@@ -19,13 +19,12 @@ jobs:
           node-version: 14
 
       - name: Build Docker Image
-        run: docker build -t onlinerenshop/frontend ./onlinerenshop/frontend
+        run: docker build -t onlinerenshop/frontend .
 
       - name: Push Docker Image
         run: |
           echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker tag my-react-app renjithbcp/frontend:latest .
-          docker push renjithbcp/frontend:latest .
+          docker push onlinerenshop/frontend
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
